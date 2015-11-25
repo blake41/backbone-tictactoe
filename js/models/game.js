@@ -2,11 +2,6 @@ var	app = app || {};
 app.Game = Backbone.Model.extend({
 	defaults: function (){ return {
 		turn: 0,
-		board: [
-		  null, null, null,
-			null, null, null, 
-			null, null, null
-		],
 		winningCombos: [
 			[0,3,6],
 			[0,1,2],
@@ -18,9 +13,8 @@ app.Game = Backbone.Model.extend({
 			[2,4,6]
 		]
 	}},
+	initialize : function() {
 
-	updateState: function(id) {
-		// your code here
 	},
 
 	tie: function() {
@@ -43,8 +37,10 @@ app.Game = Backbone.Model.extend({
 		// your code here
 	},
 	
-	doTurn: function(id) {
-		// your code here
+	doTurn: function() {
+		this.set("turn", this.get("turn") + 1)
+		this.winnerCheck();
+		this.tie();
 	}
 	
 })

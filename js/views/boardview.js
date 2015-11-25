@@ -11,7 +11,7 @@ app.BoardView = Backbone.View.extend({
       var row = $("<tr>")
       for (var j = 0; j < 3; j++) {
         var cell = new app.Cell();
-        this.model.data.push(cell);
+        this.collection.add(cell);
         var cellView = new app.CellView({model : cell});
         row.append(cellView.el)
       }

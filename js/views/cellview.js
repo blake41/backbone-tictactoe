@@ -6,6 +6,7 @@ app.CellView = Backbone.View.extend({
   tagName : "td",
   initialize : function() {
     this.render();
+    this.model.on("change:letter", this.render(), this)
   },
   render : function() {
 
