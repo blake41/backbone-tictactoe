@@ -6,10 +6,10 @@ app.CellView = Backbone.View.extend({
   tagName : "td",
   initialize : function() {
     this.render();
-    this.model.on("change:letter", this.render(), this)
+    this.model.on("change:letter", this.render, this)
   },
   render : function() {
-
+    this.$el.text(this.model.get("letter"))
   },
   handleClick : function(event) {
     this.model.set("letter", app.game.player())

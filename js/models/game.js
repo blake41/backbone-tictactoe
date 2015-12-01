@@ -34,12 +34,24 @@ app.Game = Backbone.Model.extend({
 	},
 	
 	winnerCheck: function() {
-		// your code here
+		var return_value = false;
+		this.get("winningCombos").forEach(function(combo){
+			if (this.checkCombo(combo) && app.board.models[combo[0]].get('letter') != undefined) {
+				return_value = true;
+			}
+		}, this)
+		return return_value;
 	},
 	
+	checkCombo: function(combo) {
+		return app.board.models[combo[0]].get('letter') == app.board.models[combo[1]].get('letter') && app.board.models[combo[1]].get('letter') == app.board.models[combo[2]].get('letter')
+	},
+
 	doTurn: function() {
 		this.set("turn", this.get("turn") + 1)
-		this.winnerCheck();
+		if (this.winnerCheck()) {
+			alert("player " + this.player() + " won")
+		}
 		this.tie();
 	}
 	
